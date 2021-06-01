@@ -5,7 +5,7 @@ defmodule Particle.Mixfile do
     [
       app: :particle,
       version: "1.0.0",
-      elixir: "~> 1.6",
+      elixir: "~> 1.10",
       name: "Particle Api Client",
       source_url: "https://github.com/jeffutter/particle-elixir.ex",
       build_embedded: Mix.env() == :prod,
@@ -20,7 +20,9 @@ defmodule Particle.Mixfile do
   end
 
   def application do
-    [applications: [:hackney, :gen_stage, :logger], mod: {Particle, []}]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
   defp description do
@@ -37,7 +39,8 @@ defmodule Particle.Mixfile do
       {:credo, "~> 1.0", only: [:dev, :test]},
       {:ex_doc, "~> 0.12", only: :dev},
       {:inch_ex, "~> 2.0", only: [:dev, :test]},
-      {:exvcr, "~> 0.7", only: :test}
+      {:exvcr, "~> 0.7", only: :test},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
     ]
   end
 
